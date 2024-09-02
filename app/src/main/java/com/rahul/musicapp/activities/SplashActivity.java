@@ -1,5 +1,9 @@
 package com.rahul.musicapp.activities;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.os.Build.VERSION.SDK_INT;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,7 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
+import android.os.Environment;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,41 +36,46 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 // Check if the READ_EXTERNAL_STORAGE permission is already granted
-
-checkAndRequestPermissions();
+        if (checkStoragePermission()) {
+            // Permission is granted, you can access the storage
+            accessStorage();
+        } else {
+            // Request storage permission
+            requestStoragePermission();
+        }
     }
 
-    private void checkAndRequestPermissions() {
-        // Check if the device is running Android 13 or later
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_AUDIO) != PackageManager.PERMISSION_GRANTED ||
-                    ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-
-                // Request both READ_MEDIA_AUDIO and RECORD_AUDIO permissions
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_MEDIA_AUDIO, Manifest.permission.RECORD_AUDIO},
-                        REQUEST_CODE_PERMISSIONS);
-            } else {
-                // Permissions already granted, proceed with your app logic
-                showSplashScreen();
-            }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) { // Android 13
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED ||
-                    ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-                // Request both RECORD_AUDIO and READ_EXTERNAL_STORAGE permissions
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.READ_EXTERNAL_STORAGE},
-                        REQUEST_CODE_PERMISSIONS);
-            } else {
-                // Permissions already granted, proceed with your app logic
-                showSplashScreen();
-            }
+    private boolean checkStoragePermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // For Android 6.0 and above, check if the permission is granted
+            return ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
         } else {
-            showSplashScreen();
-            // Older versions, handle permissions as needed (READ_EXTERNAL_STORAGE, RECORD_AUDIO)
-            // You might want to handle these cases separately depending on your app's requirements.
+            // For devices below Android 6.0, permissions are granted at install time
+            return true;
         }
+    }
+
+
+    private void requestStoragePermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                // Show an explanation to the user why your app needs this permission
+                Toast.makeText(this, "Storage permission is required to access your music files", Toast.LENGTH_SHORT).show();
+            }
+
+            // Request the permission
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    REQUEST_CODE_PERMISSIONS);
+        }
+    }
+
+    private void accessStorage() {
+        // Access the storage here
+        Toast.makeText(this, "Accessing storage...", Toast.LENGTH_SHORT).show();
+        // Your code to access and play music files goes here
     }
 
     @Override
