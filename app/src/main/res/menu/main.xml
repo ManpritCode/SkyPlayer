@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/actionSortRecent"
+        android:title="@string/all_songs_sort_by_recently_added" />
+    <item
+        android:id="@+id/actionSorAscending"
+        android:title="@string/all_songs_sort_by_name" />
+
+</menu>

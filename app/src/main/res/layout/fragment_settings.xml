@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:clickable="true"
+    android:orientation="vertical"
+    android:paddingTop="11dp"
+    tools:context=".fragments.SettingsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/shakeToChangeSettingFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/settings_shake_to_change_song_msg"
+        android:textColor="#212121"
+        android:textSize="17sp" />
+
+    <Switch
+        android:id="@+id/switchShakeSettingFrag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16sp"
+        android:background="#005074" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_below="@id/shakeToChangeSettingFrag"
+        android:layout_margin="25dp"
+        android:background="@color/colorLightGrey" />
+
+</RelativeLayout>

@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">SkyPlayer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <!--    main.xml-->
+    <string name="all_songs_sort_by_recently_added">By recently added</string>
+
+    <!--    fragment_song_playing.xml-->
+    <string name="shuffle_img_descr">Shuffle Button</string>
+    <string name="loop_img_descr">Loop Button</string>
+    <string name="play_img_descr">Play Button</string>
+    <string name="previous_img_descr">Previous Button</string>
+    <string name="next_img_descr">Next Button</string>
+    <string name="favorite_img_descr">Favorite Button</string>
+
+
+    <string name="all_songs_sort_by_name">By name</string>
+
+    <!--    song_playing_menu.xml-->
+    <string name="back_to_all_songs_list">Back to list</string>
+
+    <!--    row_custom_mainscreen_adapter.xml-->
+    <string name="default_song_title">Take On Me</string>
+    <string name="default_song_artist">a-ha</string>
+
+    <!--    fragment_main_screen.xml-->
+    <string name="no_songs_on_phone_message">You don\'t have any songs on the phone at the
+        moment</string>
+
+    <!--    fragment_main_screen.xml-->
+    <string name="no_favorite_songs_message">You don\'t have any favorite songs at the
+        moment</string>
+
+    <!--    fragment_settings.xml-->
+    <string name="settings_shake_to_change_song_msg">Shake to change song</string>
+    <!--    echo_partial_bottom_bar_fragment.xml-->
+    <string name="bottom_mini_player_now_playing_message">Now Playing</string>
+    <!--    row_custom_navigation-->
+    <string name="song_default_image_description">Song Image</string>
+    <!-- fragment_about_us -->
+    <string name="about_us_short_description"><b>SkyPlayer</b>, a feature-rich music player app designed to enhance your music listening experience. With a sleek and intuitive interface, SkyPlayer provides seamless access to your favorite tunes and offers a range of features to customize and enjoy your music collection.</string>
+    <string name="app_img_content_description">App Image Description</string>
+    <string name="about_us_contributors_heading">Created By</string>
+    <string name="about_us_source_heading">Privacy Policy</string>
+    <string name="about_us_contributors_1"><b>Rahul Taak</b>\nB.Tech CSE Student</string>
+    <string name="about_us_source_link">We respect and value your privacy. This Privacy Policy outlines how we collect, use, and protect your personal information when you use the <b>SkyPlayer</b> music player app. By using our app, you agree to the terms and practices described in this policy.</string>
+    <string name="todo">TODO</string>
+    <string name="course"><i>All Rights Reserved</i></string>
+    <string name="todos">TODO</string>
+    <string name="created_by_rahul_taak">Created By Rahul Taak</string>
+</resources>

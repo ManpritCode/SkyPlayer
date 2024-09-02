@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1500"
+        motion:autoTransition="animateToEnd">
+       <KeyFrameSet>
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView3" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView3"
+               motion:framePosition="0"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView3"
+               motion:framePosition="100"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView3"
+               motion:framePosition="100"
+               android:alpha="1" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView3"
+               motion:framePosition="0"
+               android:rotation="70" />
+           <KeyAttribute
+               motion:motionTarget="@+id/textView2"
+               motion:framePosition="0"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView3"
+               motion:framePosition="100"
+               android:alpha="0.5" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView3"
+               motion:framePosition="100"
+               android:alpha="0.5" />
+           <KeyAttribute
+               motion:motionTarget="@+id/textView2"
+               motion:framePosition="0"
+               android:alpha="0.5" />
+           <KeyAttribute
+               motion:motionTarget="@+id/textView2"
+               motion:framePosition="0"
+               android:alpha="0.5" />
+           <KeyAttribute
+               motion:motionTarget="@+id/textView2"
+               motion:framePosition="0"
+               android:alpha="0.5" />
+           <KeyAttribute
+               motion:motionTarget="@+id/textView"
+               motion:framePosition="0"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/textView2"
+               motion:framePosition="0"
+               android:translationX="30dp" />
+           <KeyAttribute
+               motion:motionTarget="@+id/textView"
+               motion:framePosition="0"
+               android:translationX="50dp" />
+           <KeyAttribute
+               motion:motionTarget="@+id/textView2"
+               motion:framePosition="100"
+               android:translationX="0dp" />
+           <KeyAttribute
+               motion:motionTarget="@+id/textView"
+               motion:framePosition="100"
+               android:translationX="0dp" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView3" />
+           <KeyAttribute
+               motion:motionTarget="@+id/imageView3"
+               motion:framePosition="100"
+               android:rotation="0" />
+       </KeyFrameSet>
+        <OnSwipe motion:maxVelocity="2.88"
+            motion:springStiffness="40.0"
+            motion:springDamping="5.469" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+    </ConstraintSet>
+</MotionScene>
