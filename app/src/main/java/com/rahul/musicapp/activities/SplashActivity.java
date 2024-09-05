@@ -24,66 +24,70 @@ public class SplashActivity extends AppCompatActivity {
 
     int REQUEST_CODE_PERMISSIONS = 1002;
     int REQUEST_CODE_PERMISSIONS_RECCORD_AUDIO = 1003;
-    private final static String[] permissionsRequired = {Manifest.permission.READ_MEDIA_AUDIO, Manifest.permission.RECORD_AUDIO};
+    private final static String[] permissionsRequired = {
+            Manifest.permission.READ_MEDIA_AUDIO,
+            Manifest.permission.RECORD_AUDIO
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-// Check if the READ_EXTERNAL_STORAGE permission is already granted
-        if (checkStoragePermission()) {
-            // Permission is granted, you can access the storage
 
+        if (checkStoragePermission()) {
             startTimer();
         } else {
-            // Request storage permission
             requestStoragePermission();
         }
     }
+
     public void startTimer() {
-        // Create a new Handler
         Handler handler = new Handler(Looper.getMainLooper());
-        // Post a Runnable to be executed after 5 seconds (5000 milliseconds)
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Code to be executed after 5 seconds
                 accessStorage();
             }
-        }, 3000);  // 5000 milliseconds = 5 seconds
+        }, 3000);
     }
+
     private boolean checkStoragePermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            // For Android 6.0 and above, check if the permission is granted
-            return ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
-
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                // Android 14 and above: Only check for READ_MEDIA_AUDIO
+                return ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.READ_MEDIA_AUDIO) == PackageManager.PERMISSION_GRANTED&&
+                        ContextCompat.checkSelfPermission(this,
+                                Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
+            } else {
+                // For Android versions below 14, check for all permissions
+                return ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
+                        ContextCompat.checkSelfPermission(this,
+                                Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
+            }
         } else {
-            // For devices below Android 6.0, permissions are granted at install time
             return true;
         }
     }
 
-
     private void requestStoragePermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE) ||
-                    ActivityCompat.shouldShowRequestPermissionRationale(this,
-                            Manifest.permission.RECORD_AUDIO)) {
-                // Show an explanation to the user why your app needs these permissions
-                Toast.makeText(this, "Storage and microphone permissions are required to access your music files and record audio.", Toast.LENGTH_SHORT).show();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                // Android 14 and above: Request only READ_MEDIA_AUDIO permission
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_MEDIA_AUDIO ,Manifest.permission.RECORD_AUDIO},
+                        REQUEST_CODE_PERMISSIONS);
+            } else {
+                // Below Android 14: Request all necessary permissions
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO},
+                        REQUEST_CODE_PERMISSIONS);
             }
-
-            // Request both permissions simultaneously
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO},
-                    REQUEST_CODE_PERMISSIONS);
         }
     }
 
     private void accessStorage() {
-        // Access the storage here
         showSplashScreen();
         // Your code to access and play music files goes here
     }
@@ -103,7 +107,7 @@ public class SplashActivity extends AppCompatActivity {
             if (allPermissionsGranted) {
                 showSplashScreen();
             } else {
-                // Permissions were denied, handle accordingly
+                // Handle permission denial accordingly
             }
         }
     }
