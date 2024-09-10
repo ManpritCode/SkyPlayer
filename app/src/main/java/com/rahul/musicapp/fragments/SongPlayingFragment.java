@@ -194,6 +194,9 @@ public class SongPlayingFragment extends Fragment {
             mediaPlayer.setDataSource(getActivity(), Uri.parse(currentSongHelper.getSongData()));
             mediaPlayer.prepare();
             mediaPlayer.start();
+            VisualizerDbmHandler vizualizerHandler = DbmHandler.Factory.newVisualizerHandler(getActivity(), mediaPlayer.getAudioSessionId());
+            audioVisualization.linkTo(vizualizerHandler);
+            audioVisualization.onResume();
             updateSeekBarStartEndTime(mediaPlayer);
             if (nextSongPosition > songsList.size() - 1) {
                 // If song List is finished / Complete, Force Pause current Song to let user
@@ -340,6 +343,7 @@ public class SongPlayingFragment extends Fragment {
 //                blastVisualizer.setAudioSessionId(mediaPlayer.getAudioSessionId());
                 VisualizerDbmHandler vizualizerHandler = DbmHandler.Factory.newVisualizerHandler(getActivity(), mediaPlayer.getAudioSessionId());
                audioVisualization.linkTo(vizualizerHandler);
+               audioVisualization.onResume();
 
             }
         } catch (Exception e) {
@@ -360,6 +364,9 @@ public class SongPlayingFragment extends Fragment {
                 mediaPlayer.setDataSource(getActivity(), Uri.parse(currentSongHelper.getSongData()));
                 mediaPlayer.prepare();
                 mediaPlayer.start();
+                VisualizerDbmHandler vizualizerHandler = DbmHandler.Factory.newVisualizerHandler(getActivity(), mediaPlayer.getAudioSessionId());
+                audioVisualization.linkTo(vizualizerHandler);
+                audioVisualization.onResume();
                 currentSongHelper.setPlaying(true);
                 updateSeekBarStartEndTime(mediaPlayer);
                 changePlayPauseButton(currentSongHelper);
@@ -371,7 +378,9 @@ public class SongPlayingFragment extends Fragment {
             }
         }
         clickHandler();
-
+        VisualizerDbmHandler vizualizerHandler = DbmHandler.Factory.newVisualizerHandler(getActivity(), mediaPlayer.getAudioSessionId());
+        audioVisualization.linkTo(vizualizerHandler);
+        audioVisualization.onResume();
         // set audio visualization handler. This will REPLACE previously set speech recognizer handler
 //
 
@@ -445,7 +454,7 @@ public class SongPlayingFragment extends Fragment {
             getActivity().onBackPressed();
             return false;
         }
-        return false;
+            return false;
     }
 
     /* When user leaves screen with audio visualization view,
@@ -466,8 +475,6 @@ public class SongPlayingFragment extends Fragment {
                     String songArtist = currentSongHelper.getSongArtist();
                     String songTitle = currentSongHelper.getSongTitle();
                     String songPath = currentSongHelper.getSongData();
-
-
                     /*
                      * If it is already favorite, then that means
                      * the user wants it deleted.
@@ -567,6 +574,9 @@ public class SongPlayingFragment extends Fragment {
                         playPauseButtonNowPlaying.setBackgroundResource(R.drawable.play_icon);
                     } else {
                         mediaPlayer.start();
+                        VisualizerDbmHandler vizualizerHandler = DbmHandler.Factory.newVisualizerHandler(getActivity(), mediaPlayer.getAudioSessionId());
+                        audioVisualization.linkTo(vizualizerHandler);
+                        audioVisualization.onResume();
                         currentSongHelper.setPlaying(true);
                         playPauseButtonNowPlaying.setBackgroundResource(R.drawable.pause_icon);
                     }
@@ -619,6 +629,9 @@ public class SongPlayingFragment extends Fragment {
             mediaPlayer.setDataSource(getActivity(), Uri.parse(currentSongHelper.getSongData()));
             mediaPlayer.prepare();
             mediaPlayer.start();
+            VisualizerDbmHandler vizualizerHandler = DbmHandler.Factory.newVisualizerHandler(getActivity(), mediaPlayer.getAudioSessionId());
+            audioVisualization.linkTo(vizualizerHandler);
+            audioVisualization.onResume();
             updateSeekBarStartEndTime(mediaPlayer);
 
         } catch (Exception e) {

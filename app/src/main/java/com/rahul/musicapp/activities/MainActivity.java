@@ -20,13 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    /**
-     * Initialize our DrawerLayout object
-     * The object is made static so that in our NavigationDrawerAdapter.java
-     * so that when we click an item, we can refer to this 'drawerLayout' and close all
-     * drawers associated with this
-     * "drawerLayout" (To automatically close the 'nav drawer' when an item is clicked).
-     */
+
     public static DrawerLayout drawerLayout = null;
 
 
